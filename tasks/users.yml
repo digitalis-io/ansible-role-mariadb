@@ -9,9 +9,11 @@
     append_privs: "{{ item.append_privs | default('no') }}"
     encrypted: "{{ item.encrypted | default('no') }}"
     plugin_auth_string: "{{ item.plugin_auth_string | default(omit) }}"
+    plugin: "{{ item.plugin | default(omit) }}"
     login_unix_socket: "{{ mariadb_unix_socket }}"
     login_user: "{{ mariadb_root_user | default('root') }}"
     login_password: "{{ mariadb_root_password | default(omit) }}"
     check_implicit_admin: true
+  tags: mariadb_users
   loop: "{{ mariadb_users }}"
   no_log: true
